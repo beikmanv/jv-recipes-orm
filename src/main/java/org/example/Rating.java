@@ -14,7 +14,8 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int iD;
 
-    private String value;
+    @Column(name = "rating_value")
+    private int ratingValue;
     private LocalDateTime ratingDate;
 
     private String associatedRecipe;
