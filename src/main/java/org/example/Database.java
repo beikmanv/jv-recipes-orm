@@ -14,6 +14,7 @@ public class Database {
                 .setProperty("hibernate.hikari.maximumPoolSize", "20")
                 .setProperty(JAKARTA_JDBC_USER, "sa")   // <-- Using the default username...
                 .setProperty(JAKARTA_JDBC_PASSWORD, "") // <-- ... and password
+                .addAnnotatedClass(Recipe.class)
                 .setProperty(SHOW_SQL, TRUE.toString()) // <-- SQL formatting configuration
                 .setProperty(FORMAT_SQL, TRUE.toString())
                 .setProperty(HIGHLIGHT_SQL, TRUE.toString())
