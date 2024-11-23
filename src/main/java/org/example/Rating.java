@@ -22,6 +22,9 @@ public class Rating {
     @ManyToOne
     private UserChef rater;
 
+    @ManyToOne
+    private Recipe recipe;
+
     public Rating() {
     }
 

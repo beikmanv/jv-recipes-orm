@@ -31,7 +31,7 @@ public class Recipe {
     private String difficultyLevel;
     private int rating;
 
-    @ManyToMany
+    @OneToMany
     private List<Ingredient> ingredients;
 
     @ManyToMany
@@ -39,6 +39,8 @@ public class Recipe {
 
     @ManyToOne
     private UserChef user;
+
+
     private LocalDateTime createdDt;
     private LocalDateTime lastModifiedDt;
 
