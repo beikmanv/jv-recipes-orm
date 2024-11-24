@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="example-unit" transaction-type="RESOURCE_LOCAL">
+        <class>org.example.entity.Category</class>
+        <class>org.example.entity.Comment</class>
+        <class>org.example.entity.Image</class>
+        <class>org.example.entity.Ingredient</class>
+        <class>org.example.entity.Rating</class>
+        <class>org.example.entity.Recipe</class>
+        <class>org.example.entity.Tag</class>
+        <class>org.example.entity.UserChef</class>
+        <!-- Add other entity classes here -->
+
+        <!-- Database connection properties -->
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:db1"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- Hibernate properties -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
