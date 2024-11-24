@@ -18,6 +18,11 @@ public class Ingredient {
     private int quantity;
     private String unitOfMeasurement;
 
+    // Default constructor (Hibernate requires this)
+    public Ingredient() {
+        // Default constructor logic (can be empty)
+    }
+
     public Ingredient(String name, int quantity, String unitOfMeasurement) {
         this.name = name;
         this.quantity = quantity;

@@ -28,6 +28,10 @@ public class UserChef {
     public UserChef(){
 
     }
+
+    public UserChef(String mail, String password, String admin, String username) {
+    }
+
     public String getUsername() {
         return username;
     }

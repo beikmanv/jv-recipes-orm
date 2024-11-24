@@ -10,12 +10,14 @@ import jakarta.validation.constraints.NotNull;
 class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iD;
+    private int id;
     @NotNull
     private String name;
 
-    public int getiD() {
-        return iD;
+    public Category() {};
+
+    public int getId() {
+        return id;
     }
 
     public @NotNull String getName() {
@@ -23,7 +25,7 @@ class Category {
     }
 
     public void setiD(int iD) {
-        this.iD = iD;
+        this.id = id;
     }
 
     public void setName(@NotNull String name) {
