@@ -13,13 +13,23 @@ import jakarta.persistence.Id;
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int  id;
+    private int id;
     private String name;
     private int quantity;
     private String unitOfMeasurement;
 
-    public Ingredient() {
+    public Ingredient(String name, int quantity, String unitOfMeasurement) {
+        this.name = name;
+        this.quantity = quantity;
+        this.unitOfMeasurement = unitOfMeasurement;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

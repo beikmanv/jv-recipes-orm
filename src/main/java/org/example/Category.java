@@ -6,8 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
-import javax.annotation.processing.Generated;
-
 @Entity
 class Category {
     @Id
@@ -32,5 +30,5 @@ class Category {
         this.name = name;
     }
 
-    public Category() {}
+    public Category(String mainCourse) {}
 }

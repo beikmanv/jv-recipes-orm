@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,13 @@ public class Recipe {
     private String difficultyLevel;
     private int rating;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "Recipe_Ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"recipe_id", "ingredient_id"})
+    )
     private List<Ingredient> ingredients;
 
     @ManyToMany
@@ -40,11 +47,27 @@ public class Recipe {
     @ManyToOne
     private UserChef user;
 
-
     private LocalDateTime createdDt;
     private LocalDateTime lastModifiedDt;
 
-   //User to be introduced
+    // Constructor
+    public Recipe(String title, String description) {
+        this.title = title;
+        this.description = description;
+        this.ingredients = new ArrayList<>();  // Initialize the list
+    }
+
+    //User to be introduced
+
+    // Method to add ingredients to the recipe
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
+
+    // Method to add categories to the recipe
+    public void addCategory(Category category) {
+        this.categories.add(category);
+    }
 
     public String getDescription() {
         return description;
@@ -109,7 +132,6 @@ public class Recipe {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
-
 
     public LocalDateTime getCreatedDt() {
         return createdDt;

@@ -1,25 +1,24 @@
 package org.example;
 
 import jakarta.persistence.*;
+import org.hibernate.SessionFactory;
+
 import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Configure Hibernate to set up the schema and database
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("example-unit");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+        // Initialize the Hibernate SessionFactory
+        SessionFactory sessionFactory = Database.getSessionFactory();
 
-        // Populate some data (optional, for testing)
-        em.createNativeQuery("INSERT INTO Category (iD, name) VALUES (1, 'Appetizers')").executeUpdate();
-        em.createNativeQuery("INSERT INTO Category (iD, name) VALUES (2, 'Main Course')").executeUpdate();
-        em.getTransaction().commit();
+        // Seed the database with initial data
+        Database.seed(sessionFactory);
 
-        // Query using the same connection
+        // Query using JDBC for testing and validating the data
         String url = "jdbc:h2:mem:db1";  // Same in-memory DB as used by Hibernate
         String user = "sa";
         String password = "";
 
+        // Now you can use JDBC to query and validate the data that was seeded
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             Statement stmt = conn.createStatement();
 
@@ -56,8 +55,7 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            em.close();
-            emf.close();
+            sessionFactory.close(); // Don't forget to close the SessionFactory
         }
     }
 }
